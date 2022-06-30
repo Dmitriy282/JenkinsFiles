@@ -11,6 +11,14 @@
     ansible.builtin.apt:
       name: nginx
       state: present
+  - name: Make sure a service unit is running
+    ansible.builtin.systemd:
+      state: started
+      name: nginx
+      enabled: yes
+  - name: Just force systemd to reread configs (2.4 and above)
+    ansible.builtin.systemd:
+      daemon_reload: yes
 
   # - name: Unarchive a file with extra options
   #  unarchive:
