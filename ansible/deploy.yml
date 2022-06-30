@@ -12,6 +12,18 @@
       name: nginx
       state: present
 
+
+  - name: Delete
+    file:
+      path: /etc/nginx/sites-available/default
+      state: absent
+
+  - name: copy
+    copy:
+      src: nginx.conf
+      dest: /etc/nginx/sites-available/default
+
+
   - name: Make sure a service unit is running
     ansible.builtin.systemd:
       state: started
@@ -29,15 +41,7 @@
 
 
 
-  - name: Delete
-    file:
-      path: /etc/nginx/sites-available/default
-      state: absent
 
-  - name: copy
-    copy:
-      src: nginx.conf
-      dest: /etc/nginx/sites-available/default
 
 
   - name: Delete
