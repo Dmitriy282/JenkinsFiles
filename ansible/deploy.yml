@@ -21,6 +21,21 @@
     ansible.builtin.systemd:
       daemon_reload: yes
 
+
+
+  - name: Delete
+    file:
+      path:  /var/www/html
+      state: absent
+
+
+  - name: Create
+    file:
+      path:  /var/www/html
+      state: directory
+
+
+
   - name: Unarchive a file with extra options
     unarchive:
       src: /app.zip
