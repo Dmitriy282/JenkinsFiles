@@ -38,5 +38,5 @@
 
   - name: Unarchive a file with extra options
     unarchive:
-      src: /app.zip
+      src: app.zip
       dest: /var/www/html
