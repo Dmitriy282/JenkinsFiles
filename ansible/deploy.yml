@@ -16,11 +16,12 @@
       state: started
       name: nginx
       enabled: yes
+
   - name: Just force systemd to reread configs (2.4 and above)
     ansible.builtin.systemd:
       daemon_reload: yes
 
-  # - name: Unarchive a file with extra options
-  #  unarchive:
-  #    src: /files/app.zip
-  #    dest: root@
+  - name: Unarchive a file with extra options
+    unarchive:
+      src: /app.zip
+      dest: /var/www/html
