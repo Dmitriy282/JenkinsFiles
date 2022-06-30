@@ -7,4 +7,12 @@
   - name: Git checkout
     ping:
 
-  
+  - name: Install the version '1.18.0' of package "nginx" and allow potential downgrades
+    ansible.builtin.apt:
+      name: nginx
+      state: present
+
+  # - name: Unarchive a file with extra options
+  #  unarchive:
+  #    src: /files/app.zip
+  #    dest: root@
