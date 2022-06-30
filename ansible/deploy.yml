@@ -11,6 +11,7 @@
     ansible.builtin.apt:
       name: nginx
       state: present
+
   - name: Make sure a service unit is running
     ansible.builtin.systemd:
       state: started
@@ -21,6 +22,22 @@
     ansible.builtin.systemd:
       daemon_reload: yes
 
+  - name: Make sure a service unit is running
+    ansible.builtin.systemd:
+      state: stopped
+      name: nginx
+
+
+
+  - name: Delete
+    file:
+      path: /etc/nginx/sites-available/default
+      state: absent
+
+  - name: copy
+    file:
+      src: nginx.conf
+      dest: /etc/nginx/sites-available/default
 
 
   - name: Delete
@@ -28,6 +45,10 @@
       path:  /var/www/html
       state: absent
 
+  - name: Delete
+    file:
+      path:  /var/www/app
+      state: absent
 
   - name: Create
     file:
@@ -40,3 +61,9 @@
     unarchive:
       src: app.zip
       dest: /var/www/
+
+
+  - name: Make sure a service unit is running
+    ansible.builtin.systemd:
+      state: started
+      name: nginx
